@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WELCOME ITZFIZZ</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+html,body{
+    margin:0;
+    background:#070707;
+    color:white;
+    font-family:Arial,sans-serif;
+    overflow-x:hidden;
+}
+
+body{scroll-behavior:auto}
+
+.hero{
+    height:100vh;
+    min-height:650px;
+    position:relative;
+    overflow:hidden;
+    background:
+    radial-gradient(circle at 50% 40%,rgba(216,255,62,.13),transparent 30%),
+    #070707;
+}
+
+.progress-bg{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:4px;
+    background:#222;
+    z-index:999;
+}
+
+.progress{
+    width:100%;
+    height:100%;
+    background:#d8ff3e;
+    transform:scaleX(0);
+    transform-origin:left;
+}
+
+nav{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    padding:25px 6%;
+    display:flex;
+    justify-content:space-between;
+    z-index:20;
+}
+
+.logo{
+    font-size:18px;
+    font-weight:bold;
+    letter-spacing:5px;
+}
+
+.badge{
+    padding:10px 18px;
+    border:1px solid #333;
+    border-radius:30px;
+    font-size:10px;
+    letter-spacing:2px;
+    color:#aaa;
+}
+
+.heading{
+    position:absolute;
+    top:16%;
+    width:100%;
+    text-align:center;
+    z-index:5;
+}
+
+.small{
+    color:#d8ff3e;
+    font-size:10px;
+    letter-spacing:5px;
+    margin-bottom:20px;
+}
+
+h1{
+    font-size:clamp(65px,12vw,150px);
+    line-height:.8;
+    letter-spacing:-7px;
+    font-weight:900;
+}
+
+h1 span{
+    display:block;
+    color:#252525;
+}
+
+.car{
+    position:absolute;
+    width:min(900px,90vw);
+    height:450px;
+    left:50%;
+    top:52%;
+    transform:translate(-50%,-50%);
+    z-index:10;
+}
+
+.shadow{
+    position:absolute;
+    width:70%;
+    height:30px;
+    left:15%;
+    bottom:17%;
+    background:#000;
+    border-radius:50%;
+    filter:blur(20px);
+}
+
+svg{
+    width:100%;
+    height:100%;
+}
+
+.stats{
+    position:absolute;
+    bottom:40px;
+    left:6%;
+    right:6%;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    z-index:20;
+}
+
+.stat{
+    padding:18px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:18px;
+    background:rgba(255,255,255,.04);
+    backdrop-filter:blur(10px);
+}
+
+.number{
+    font-size:38px;
+    font-weight:bold;
+}
+
+.label{
+    color:#d8ff3e;
+    font-size:10px;
+    letter-spacing:2px;
+}
+
+.desc{
+    color:#777;
+    font-size:10px;
+    margin-top:5px;
+}
+
+.scroll{
+    position:absolute;
+    bottom:10px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:9px;
+    letter-spacing:4px;
+    color:#777;
+    z-index:30;
+}
+
+.second{
+    min-height:100vh;
+    padding:150px 8%;
+    background:#0a0a0a;
+}
+
+.second small{
+    color:#d8ff3e;
+    letter-spacing:4px;
+}
+
+.second h2{
+    max-width:900px;
+    margin-top:25px;
+    font-size:clamp(45px,7vw,95px);
+    line-height:.95;
+    letter-spacing:-5px;
+}
+
+.cards{
+    margin-top:80px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.card{
+    padding:40px;
+    height:200px;
+    border:1px solid #222;
+    border-radius:20px;
+}
+
+.card h3{
+    margin-top:60px;
+}
+
+@media(max-width:700px){
+
+    .badge{display:none}
+
+    h1{
+        font-size:20vw;
+        letter-spacing:-4px;
+    }
+
+    .car{
+        width:120vw;
+    }
+
+    .stats{
+        left:15px;
+        right:15px;
+        gap:5px;
+    }
+
+    .stat{
+        padding:12px;
+    }
+
+    .number{
+        font-size:25px;
+    }
+
+    .desc{
+        display:none;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="progress-bg">
+    <div class="progress"></div>
+</div>
+
+<section class="hero">
+
+<nav>
+    <div class="logo">ITZFIZZ</div>
+
+    <div class="badge">
+        WEB DEVELOPMENT INTERNSHIP
+    </div>
+</nav>
+
+<div class="heading">
+
+    <div class="small">
+        CREATIVE TECHNOLOGY
+    </div>
+
+    <h1 id="title">
+        WELCOME
+        <span>ITZFIZZ</span>
+    </h1>
+
+</div>
+
+<div class="car" id="car">
+
+<div class="shadow"></div>
+
+<svg viewBox="0 0 1000 520">
+
+<defs>
+
+<linearGradient id="body" x1="170" y1="160" x2="850" y2="420">
+<stop offset="0" stop-color="#ffffff"/>
+<stop offset=".5" stop-color="#bfc2c5"/>
+<stop offset="1" stop-color="#555"/>
+</linearGradient>
+
+<linearGradient id="glass" x1="420" y1="120" x2="620" y2="270">
+<stop offset="0" stop-color="#d8ff3e"/>
+<stop offset=".5" stop-color="#171c13"/>
+<stop offset="1" stop-color="#000"/>
+</linearGradient>
+
+</defs>
+
+<!-- BODY -->
+
+<path
+d="M120 333
+C151 281 217 246 322 231
+L423 130
+C451 102 485 87 535 87
+H630
+C682 87 728 105 766 139
+L844 211
+C884 218 921 239 945 271
+L958 313
+C965 338 946 355 917 355
+H870
+C856 406 819 435 765 435
+C709 435 671 404 657 355
+H370
+C357 405 320 435 266 435
+C210 435 173 405 159 355
+H134
+C111 355 105 345 120 333Z"
+fill="url(#body)"
+stroke="#fff"
+stroke-opacity=".4"
+stroke-width="3"/>
+
+<!-- WINDOWS -->
+
+<path
+d="M393 226
+L455 146
+C470 126 496 114 527 114
+H625
+C660 114 691 125 716 146
+L783 209
+L760 226
+H393Z"
+fill="#080a08"
+stroke="#fff"
+stroke-opacity=".2"/>
+
+<path
+d="M465 143L410 214H566V115H526C500 115 480 124 465 143Z"
+fill="url(#glass)"/>
+
+<path
+d="M577 115V214H763L701 150C680 128 656 115 624 115H577Z"
+fill="url(#glass)"/>
+
+<!-- SIDE -->
+
+<path
+d="M178 315H843"
+stroke="#171717"
+stroke-width="17"
+stroke-linecap="round"/>
+
+<path
+d="M174 296C307 273 494 267 681 278C766 283 843 290 920 309"
+stroke="#fff"
+stroke-opacity=".35"
+stroke-width="4"
+fill="none"/>
+
+<!-- LEFT WHEEL -->
+
+<circle cx="267" cy="354" r="82"
+fill="#080808"
+stroke="#444"
+stroke-width="9"/>
+
+<circle cx="267" cy="354" r="47"
+fill="#151515"
+stroke="#999"
+stroke-width="5"/>
+
+<circle cx="267" cy="354" r="17"
+fill="#d8ff3e"/>
+
+<!-- RIGHT WHEEL -->
+
+<circle cx="765" cy="354" r="82"
+fill="#080808"
+stroke="#444"
+stroke-width="9"/>
+
+<circle cx="765" cy="354" r="47"
+fill="#151515"
+stroke="#999"
+stroke-width="5"/>
+
+<circle cx="765" cy="354" r="17"
+fill="#d8ff3e"/>
+
+<!-- LIGHT -->
+
+<path
+d="M813 239C861 242 897 255 927 278"
+stroke="#d8ff3e"
+stroke-width="14"
+stroke-linecap="round"/>
+
+<path
+d="M141 294L179 282"
+stroke="#d8ff3e"
+stroke-width="7"
+stroke-linecap="round"/>
+
+</svg>
+
+</div>
+
+<!-- STATS -->
+
+<div class="stats">
+
+<div class="stat">
+    <span class="number">06</span>
+    <span class="label"> MONTHS</span>
+    <div class="desc">Creative development</div>
+</div>
+
+<div class="stat">
+    <span class="number">36</span>
+    <span class="label"> HOURS</span>
+    <div class="desc">Weekly commitment</div>
+</div>
+
+<div class="stat">
+    <span class="number">100%</span>
+    <span class="label"> SCROLL</span>
+    <div class="desc">Driven experience</div>
+</div>
+
+</div>
+
+<div class="scroll">
+    SCROLL ↓
+</div>
+
+</section>
+
+
+<section class="second">
+
+<small>EXPERIENCE COMPLETE</small>
+
+<h2>
+Built for smooth motion, responsive layouts and modern web experiences.
+</h2>
+
+<div class="cards">
+
+<div class="card">
+    <small>01</small>
+    <h3>Next.js</h3>
+</div>
+
+<div class="card">
+    <small>02</small>
+    <h3>Tailwind CSS</h3>
+</div>
+
+<div class="card">
+    <small>03</small>
+    <h3>GSAP</h3>
+</div>
+
+</div>
+
+</section>
+
+
+<script>
+
+gsap.registerPlugin(ScrollTrigger);
+
+
+/* PAGE LOAD */
+
+let intro = gsap.timeline();
+
+intro.from("#title",{
+    y:80,
+    opacity:0,
+    duration:1.2,
+    ease:"power3.out"
+});
+
+intro.from(".stat",{
+    y:30,
+    opacity:0,
+    duration:.6,
+    stagger:.15
+},"-=.6");
+
+intro.from("#car",{
+    scale:.7,
+    opacity:0,
+    y:70,
+    rotation:-5,
+    duration:1.2,
+    ease:"power3.out"
+},"-=.7");
+
+
+/* SCROLL ANIMATION */
+
+let animation = gsap.timeline({
+
+scrollTrigger:{
+    trigger:".hero",
+    start:"top top",
+    end:"+=1800",
+    scrub:1,
+    pin:true,
+
+    onUpdate:function(self){
+
+        gsap.set(".progress",{
+            scaleX:self.progress
+        });
+
+    }
+}
+
+});
+
+
+animation
+.to("#car",{
+    x:"-24vw",
+    y:"5vh",
+    rotation:-7,
+    scale:.82,
+    duration:.3,
+    ease:"none"
+})
+
+.to("#car",{
+    x:"24vw",
+    y:"-7vh",
+    rotation:7,
+    scale:.68,
+    duration:.35,
+    ease:"none"
+})
+
+.to("#car",{
+    x:"0vw",
+    y:"4vh",
+    rotation:0,
+    scale:.92,
+    duration:.35,
+    ease:"none"
+});
+
+
+/* TITLE SCROLL */
+
+gsap.to("#title",{
+
+    yPercent:-35,
+    opacity:.2,
+
+    scrollTrigger:{
+        trigger:".hero",
+        start:"top top",
+        end:"+=1800",
+        scrub:1
+    }
+
+});
+
+
+/* STATS SCROLL */
+
+gsap.to(".stats",{
+
+    yPercent:55,
+    opacity:.2,
+
+    scrollTrigger:{
+        trigger:".hero",
+        start:"top top",
+        end:"+=1800",
+        scrub:1
+    }
+
+});
+
+
+/* SCROLL TEXT */
+
+gsap.to(".scroll",{
+
+    opacity:0,
+
+    scrollTrigger:{
+        trigger:".hero",
+        start:"top top",
+        end:"top+=250",
+        scrub:true
+    }
+
+});
+
+</script>
+
+</body>
+</html>
